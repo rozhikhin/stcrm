@@ -31,7 +31,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'name',
-            'parent_id',
+            [
+                'attribute' => 'parent_id',
+                'value'     =>  $model->parent->name
+            ],
         ],
     ]) ?>
 

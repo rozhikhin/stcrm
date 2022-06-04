@@ -37,9 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'email',
             [
                 'attribute' => 'department_id',
-                'value'     => function ($model, $key, $index, $column) {
-                    return $model->department->name;
-                },
+                'value'     => 'department.name'
             ],
             [
                 'class' => ActionColumn::className(),

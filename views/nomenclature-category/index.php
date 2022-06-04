@@ -32,7 +32,6 @@ $this->params['breadcrumbs'][] = $this->title;
 //            'id',
             'name',
             [
-//                    'attribute' => 'parentName',
                     'attribute' => 'parent_id',
                     'value' => 'parent.name'
             ],
