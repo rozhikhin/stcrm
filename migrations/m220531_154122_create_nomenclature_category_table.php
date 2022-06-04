@@ -14,8 +14,8 @@ class m220531_154122_create_nomenclature_category_table extends Migration
     {
         $this->createTable('{{%nomenclature_category}}', [
             'id' => $this->primaryKey(),
-            'name' => $this->string(200),
-            'parent' => $this->integer()->defaultValue(Null)
+            'name' => $this->string(200)->notNull(),
+            'parent_id' => $this->integer()->defaultValue(Null)
         ]);
     }
 

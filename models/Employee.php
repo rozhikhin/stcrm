@@ -11,6 +11,7 @@ use Yii;
  * @property string|null $lname
  * @property string|null $fname
  * @property string|null $phone
+ * @property string|null $email
  * @property int|null $department_id
  *
  * @property Department $department
@@ -35,6 +36,9 @@ class Employee extends \yii\db\ActiveRecord
             [['department_id'], 'integer'],
             [['lname', 'fname', 'phone'], 'string', 'max' => 200],
             [['lname', 'fname', 'phone'], 'required'],
+            [['email'], 'string', 'max' => 100],
+            [['email'], 'email'],
+            [['email'], 'default', 'value' => null],
             [['department_id'], 'exist', 'skipOnError' => true, 'targetClass' => Department::className(), 'targetAttribute' => ['department_id' => 'id']],
         ];
     }
@@ -46,9 +50,10 @@ class Employee extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'lname' => 'Имя',
-            'fname' => 'Фамилия',
+            'lname' => 'Фамилия',
+            'fname' => 'Имя',
             'phone' => 'Телефон',
+            'email' => 'Email',
             'department_id' => 'Отдел',
         ];
     }

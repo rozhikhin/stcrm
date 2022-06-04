@@ -34,6 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'lname',
             'fname',
             'phone',
+            'email',
             [
                 'attribute' => 'department_id',
                 'value'     => function ($model, $key, $index, $column) {

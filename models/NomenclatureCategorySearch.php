@@ -20,7 +20,7 @@ class NomenclatureCategorySearch extends NomenclatureCategory
         return [
             [['id'], 'integer'],
             [['name'], 'safe'],
-            [['parent'], 'safe'],
+            [['parent_id'], 'safe'],
         ];
     }
 
@@ -52,7 +52,7 @@ class NomenclatureCategorySearch extends NomenclatureCategory
             'query' => $query,
         ]);
 
-        $dataProvider->sort->attributes['parent'] = [
+        $dataProvider->sort->attributes['parent_id'] = [
             // The tables are the ones our relation are configured to
             // in my case they are prefixed with "tbl_"
             'asc' => ['parent_table.name' => SORT_ASC],
@@ -73,7 +73,7 @@ class NomenclatureCategorySearch extends NomenclatureCategory
         ]);
 
         $query->andFilterWhere(['ilike', 'nomenclature_category.name', $this->name])
-        ->andFilterWhere(['ilike', 'parent_table.name', $this->parent]);
+        ->andFilterWhere(['ilike', 'parent_table.name', $this->parent_id]);
 
         return $dataProvider;
     }

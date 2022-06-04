@@ -20,6 +20,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+
     <?php
         $departments = Department::find()->all();
         $items = ArrayHelper::map($departments,'id','name');

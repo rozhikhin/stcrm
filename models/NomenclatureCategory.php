@@ -40,6 +40,7 @@ class NomenclatureCategory extends \yii\db\ActiveRecord
             [['parent_id'], 'integer'],
             [['parent'], 'safe'],
             [['name'], 'string', 'max' => 200],
+            [['name'], 'unique'],
             [['parent_id'], 'exist', 'skipOnError' => true, 'targetClass' => NomenclatureCategory::className(), 'targetAttribute' => ['parent_id' => 'id']],
         ];
     }
@@ -52,7 +53,8 @@ class NomenclatureCategory extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Название',
-            'parent ' => 'Родительская категория',
+            'parent_id' => 'Родительская категория',
+            'parent' => 'Родительская категория',
         ];
     }
 

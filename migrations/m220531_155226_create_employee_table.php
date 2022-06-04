@@ -17,6 +17,7 @@ class m220531_155226_create_employee_table extends Migration
             'lname' => $this->string(200),
             'fname' => $this->string(200),
             'phone' => $this->string(200),
+            'email' => $this->string(100)->defaultValue(null),
             'department_id' => $this->integer()->defaultValue(1),
         ]);
 

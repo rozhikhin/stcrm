@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\models\Department;
+use app\models\DepartmentSearch;
 use app\models\NomenclatureCategory;
 use app\models\NomenclatureCategorySearch;
 use yii\web\Controller;
@@ -9,7 +11,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * DepartmentController implements the CRUD actions for NomenclatureCategory model.
+ * DepartmentController implements the CRUD actions for Department model.
  */
 class DepartmentController extends Controller
 {
@@ -32,13 +34,13 @@ class DepartmentController extends Controller
     }
 
     /**
-     * Lists all NomenclatureCategory models.
+     * Lists all Department models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new NomenclatureCategorySearch();
+        $searchModel = new DepartmentSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -61,13 +63,13 @@ class DepartmentController extends Controller
     }
 
     /**
-     * Creates a new NomenclatureCategory model.
+     * Creates a new Department model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new NomenclatureCategory();
+        $model = new Department();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -83,7 +85,7 @@ class DepartmentController extends Controller
     }
 
     /**
-     * Updates an existing NomenclatureCategory model.
+     * Updates an existing Department model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -103,7 +105,7 @@ class DepartmentController extends Controller
     }
 
     /**
-     * Deletes an existing NomenclatureCategory model.
+     * Deletes an existing Department model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -117,7 +119,7 @@ class DepartmentController extends Controller
     }
 
     /**
-     * Finds the NomenclatureCategory model based on its primary key value.
+     * Finds the Department model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
      * @return NomenclatureCategory the loaded model
@@ -125,7 +127,7 @@ class DepartmentController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = NomenclatureCategory::findOne(['id' => $id])) !== null) {
+        if (($model = Department::findOne(['id' => $id])) !== null) {
             return $model;
         }
 

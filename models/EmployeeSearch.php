@@ -17,8 +17,7 @@ class EmployeeSearch extends Employee
     public function rules()
     {
         return [
-            [['id', 'department_id'], 'integer'],
-            [['lname', 'fname', 'phone'], 'safe'],
+            [['lname', 'fname', 'phone', 'email', 'department_id'], 'safe'],
         ];
     }
 
@@ -41,12 +40,21 @@ class EmployeeSearch extends Employee
     public function search($params)
     {
         $query = Employee::find();
+        $query->joinWith(['department']);
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort'=> ['defaultOrder' => ['lname' => SORT_ASC]],
         ]);
+
+        $dataProvider->sort->attributes['department_id'] = [
+            // The tables are the ones our relation are configured to
+            // in my case they are prefixed with "tbl_"
+            'asc' => ['department.name' => SORT_ASC],
+            'desc' => ['department.name' => SORT_DESC],
+        ];
 
         $this->load($params);
 
@@ -59,12 +67,14 @@ class EmployeeSearch extends Employee
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'department_id' => $this->department_id,
+//            'department_id' => $this->department_id,
         ]);
 
         $query->andFilterWhere(['ilike', 'lname', $this->lname])
             ->andFilterWhere(['ilike', 'fname', $this->fname])
-            ->andFilterWhere(['ilike', 'phone', $this->phone]);
+            ->andFilterWhere(['ilike', 'phone', $this->phone])
+            ->andFilterWhere(['ilike', 'email', $this->email])
+            ->andFilterWhere(['ilike', 'department.name', $this->department_id]);
 
         return $dataProvider;
     }

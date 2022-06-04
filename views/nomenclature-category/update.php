@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\models\NomenclatureCategory */
 /* @var $allowedCategories Array */
 
-$this->title = 'Update Nomenclature Category: ' . $model->name;
+$this->title = 'Изменить категорию: ' . $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Nomenclature Categories', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 

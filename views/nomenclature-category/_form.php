@@ -20,7 +20,7 @@ use yii\widgets\ActiveForm;
 
     echo $form->field($model, 'parent_id')->dropDownList($allowedCategories,           ['options' =>
         [
-            $model->id ? $model->parent_id : 1=> ['selected' => true] //Create - Главная катетория по-умолчанию, Update - текущий родитель
+            $model->parent_id ? $model->parent_id : 1=> ['selected' => true] //Create - Главная катетория по-умолчанию, Update - текущий родитель
         ]
     ]);
     ?>

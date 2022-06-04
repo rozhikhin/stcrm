@@ -10,7 +10,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\NomenclatureCategorySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Nomenclature Categories';
+$this->title = ' Категории номенклатуры';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="nomenclature-category-index">
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Nomenclature Category', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать категорию', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             [
 //                    'attribute' => 'parentName',
-                    'attribute' => 'parent',
+                    'attribute' => 'parent_id',
                     'value' => 'parent.name'
             ],
             [
