@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Employee;
 use app\models\EmployeeSearch;
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -111,9 +112,15 @@ class EmployeeController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
+        try {
+            $model = $this->findModel($id);
+            $model->delete();
+            Yii::$app->session->setFlash('success', 'Сотрудник ' . $model->lname . ' ' . $model->fname . ' успешно удален.');
+            return $this->redirect(['index']);
+        } catch (\yii\db\Exception $e) {
+            Yii::$app->session->setFlash('error', 'Невозможно удалить сотрудника.');
+            return $this->goBack(Yii::$app->request->referrer);
+        }
     }
 
     /**

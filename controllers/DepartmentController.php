@@ -6,6 +6,7 @@ use app\models\Department;
 use app\models\DepartmentSearch;
 use app\models\NomenclatureCategory;
 use app\models\NomenclatureCategorySearch;
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -113,9 +114,15 @@ class DepartmentController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
+         try {
+             $model = $this->findModel($id);
+             $model->delete();
+             Yii::$app->session->setFlash('success', 'Отдел ' . $model->name . ' успешно удален.');
+             return $this->redirect(['index']);
+         } catch (\yii\db\IntegrityException $e) {
+             Yii::$app->session->setFlash('error', 'Невозможно удалить отдел т.к. него ссылаются элементы из таблицы "Сотрудники".');
+             return $this->goBack(Yii::$app->request->referrer);
+         }
     }
 
     /**

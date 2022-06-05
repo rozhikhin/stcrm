@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\NomenclatureCategory;
 use app\models\NomenclatureCategorySearch;
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -120,9 +121,13 @@ class NomenclatureCategoryController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
+        try {
+            $this->findModel($id)->delete();
+            return $this->redirect(['index']);
+        } catch (\yii\db\IntegrityException  $e) {
+            Yii::$app->session->setFlash('error', 'Невозможно удалить эту категорию, т.к. нее ссылаются ее дочение категории.');
+            return $this->goBack(Yii::$app->request->referrer);
+        }
     }
 
     /**
