@@ -66,15 +66,17 @@ form .help-block {
         width: 100%;
         margin-left: 230px;
     }
-
     .footer {
         margin-left: 20%;
         padding: 0 50px;
         text-align: center;
     }
-
     .footer p {
         margin-bottom: 0;
+    }
+    .site-index {
+        max-width: 80%;
+        margin: auto;
     }
 }
 

@@ -15,22 +15,31 @@ $this->title = 'My Yii Application';
     <div class="body-content">
 
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-4 mt-5 d-flex flex-column align-items-center">
                 <h2>Отделы</h2>
                 <p><a class="btn btn-outline-secondary" href="<?=Url::to(['department/index']); ?>">Перейти &raquo;</a></p>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-4 mt-5 d-flex flex-column align-items-center">
                 <h2>Сотрудники</h2>
                 <p><a class="btn btn-outline-secondary" href="<?=Url::to(['employee/index']); ?>">Перейти &raquo;</a></p>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-4 mt-5 d-flex flex-column align-items-center">
                 <h2>Категории</h2>
-                <p><a class="btn btn-outline-secondary" href="<?=Url::to(['nomenclature-category---old/index']); ?>">Перейти &raquo;</a></p>
+                <p><a class="btn btn-outline-secondary" href="<?=Url::to(['nomenclature-category/index']); ?>">Перейти &raquo;</a></p>
             </div>
-            <div class="col-lg-4">
-                <h2>Инструменты</h2>
-                <p><a class="btn btn-outline-secondary" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
+            <div class="col-lg-4 mt-5 d-flex flex-column align-items-center">
+                <h2>Номенклатура</h2>
+                <p><a class="btn btn-outline-secondary" href="<?=Url::to(['nomenclature-list/index']); ?>">Перейти &raquo;</a></p>
             </div>
+            <div class="col-lg-4 mt-5 d-flex flex-column align-items-center">
+                <h2>Типы операций</h2>
+                <p><a class="btn btn-outline-secondary" href="<?=Url::to(['operation-type/index']); ?>">Перейти &raquo;</a></p>
+            </div>
+            <div class="col-lg-4 mt-5 d-flex flex-column align-items-center">
+                <h2>Операции</h2>
+                <p><a class="btn btn-outline-secondary" href="<?=Url::to(['operation-history/index']); ?>">Перейти &raquo;</a></p>
+            </div>
+
         </div>
 
     </div>

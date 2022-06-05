@@ -53,6 +53,19 @@ AppAsset::register($this);
                 'label' => 'Категории',
                 'url' => ['/nomenclature-category/index'],
             ],
+            [
+                'label' => 'Номенклатура',
+                'url' => ['/nomenclature-list/index'],
+            ],
+            [
+                'label' => 'Типы оперций',
+                'url' => ['/operation-type/index'],
+            ],
+            [
+                'label' => 'Операции',
+                'url' => ['/operation-history/index'],
+            ],
+
 
             Yii::$app->user->isGuest ?
                 ''
