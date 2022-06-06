@@ -4,14 +4,14 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\OperationType */
+/* @var $model app\models\UnitMeasurement */
 
-$this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Типы оперций', 'url' => ['index']];
+$this->title = $model->unit;
+$this->params['breadcrumbs'][] = ['label' => 'Единицы измерения', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="operation-type-view">
+<div class="unit-measurement-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
 //            'id',
-            'name',
+            'unit',
         ],
     ]) ?>
 

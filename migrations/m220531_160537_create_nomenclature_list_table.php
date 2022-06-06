@@ -19,6 +19,7 @@ class m220531_160537_create_nomenclature_list_table extends Migration
             'category_id' => $this->integer()->defaultValue(1), // Категория - Ссылка - nomenclature_category->id
             'subcategory_id' => $this->integer(), // Подкатегория - Ссылка - nomenclature_category->id
             'count_in_store' => $this->float(), // Остаток на складе
+            'unit_id' => $this->integer(), // Единицы измерения - Ссылка -
             'last_operation_id' => $this->integer(), // Номер последней операции - Ссылка на последнюю операцию с этим товаром - operation_history->id
 //            'last_operation_type' => $this->integer(), // Тип последней операции - Ссылка - operation_history->type
 //            'last_operation_date' => $this->date(), // Дата последней операции - Ссылка - operation_history->date
@@ -32,7 +33,7 @@ class m220531_160537_create_nomenclature_list_table extends Migration
             'category_id'
         );
 
-        // add foreign key for table `tool_category`
+        // add foreign key for table `nomenclature_category`
         $this->addForeignKey(
             'fk-nomenclature_list-category_id',
             'nomenclature_list',
@@ -49,7 +50,7 @@ class m220531_160537_create_nomenclature_list_table extends Migration
             'subcategory_id'
         );
 
-        // add foreign key for table `tool_category (subcategory_id)`
+        // add foreign key for table `nomenclature_category (subcategory_id)`
         $this->addForeignKey(
             'fk-nomenclature_list-subcategory_id',
             'nomenclature_list',
@@ -58,7 +59,6 @@ class m220531_160537_create_nomenclature_list_table extends Migration
             'id',
             'RESTRICT'
         );
-
 
     }
 

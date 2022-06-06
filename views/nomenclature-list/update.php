@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\NomenclatureList */
 
-$this->title = 'Update Nomenclature List: ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Nomenclature Lists', 'url' => ['index']];
+$this->title = 'Изменить номенклатуру: ' . $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'Список номенклатуры', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Изменить';
 ?>
 <div class="nomenclature-list-update">
 

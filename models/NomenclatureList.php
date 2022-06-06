@@ -12,6 +12,7 @@ use Yii;
  * @property string|null $reg_number
  * @property int|null $category_id
  * @property int|null $subcategory_id
+ * @property int|null $unit_id
  * @property float|null $count_in_store
  * @property int|null $last_operation_id
  *
@@ -39,8 +40,9 @@ class NomenclatureList extends \yii\db\ActiveRecord
             [['category_id', 'subcategory_id', 'last_operation_id'], 'integer'],
             [['count_in_store'], 'number'],
             [['name'], 'string', 'max' => 200],
+            [['unit_id'], 'string', 'max' => 50],
             [['reg_number'], 'string', 'max' => 100],
-            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => NomenclatureCategory::className(), 'targetAttribute' => ['category_id' => 'id']],
+            [['unit_id'], 'exist', 'skipOnError' => true, 'targetClass' => UnitMeasurement::className(), 'targetAttribute' => ['unit_id' => 'id']],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => NomenclatureCategory::className(), 'targetAttribute' => ['category_id' => 'id']],
             [['last_operation_id'], 'exist', 'skipOnError' => true, 'targetClass' => OperationHistory::className(), 'targetAttribute' => ['last_operation_id' => 'id']],
         ];
@@ -53,12 +55,13 @@ class NomenclatureList extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'reg_number' => 'Reg Number',
-            'category_id' => 'Category ID',
-            'subcategory_id' => 'Subcategory ID',
-            'count_in_store' => 'Count In Store',
-            'last_operation_id' => 'Last Operation ID',
+            'name' => 'Название',
+            'reg_number' => 'Рег номер',
+            'category_id' => 'Категория',
+            'subcategory_id' => 'Покатегория',
+            'unit_id' => 'Единицы измерения',
+            'count_in_store' => 'Количесво на складе',
+            'last_operation_id' => 'Последняя оперция',
         ];
     }
 
@@ -90,5 +93,15 @@ class NomenclatureList extends \yii\db\ActiveRecord
     public function getLastOperation()
     {
         return $this->hasOne(OperationHistory::className(), ['id' => 'last_operation_id']);
+    }
+
+    /**
+     * Gets query for [[Unit]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUnit()
+    {
+        return $this->hasOne(UnitMeasurement::className(), ['id' => 'unit_id']);
     }
 }

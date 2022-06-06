@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\NomenclatureCategory */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Nomenclature Categories', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Категории номенклатуры', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             [
                 'attribute' => 'parent_id',
-                'value'     =>  $model->parent->name
+                'value'     =>  $model->parent ? $model->parent->name : null
             ],
         ],
     ]) ?>

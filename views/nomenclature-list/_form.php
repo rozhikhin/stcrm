@@ -1,5 +1,8 @@
 <?php
 
+use app\models\NomenclatureCategory;
+use app\models\UnitMeasurement;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -16,16 +19,27 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'reg_number')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'category_id')->textInput() ?>
+    <?php
+        $categories = NomenclatureCategory::find()->all();
+        $items = ArrayHelper::map($categories,'id','name');
+        echo $form->field($model, 'category_id')->dropDownList($items);
+    ?>
 
-    <?= $form->field($model, 'subcategory_id')->textInput() ?>
+<!--    --><?//= $form->field($model, 'subcategory_id')->textInput() ?>
 
     <?= $form->field($model, 'count_in_store')->textInput() ?>
 
-    <?= $form->field($model, 'last_operation_id')->textInput() ?>
+    <?php
+        $units= UnitMeasurement::find()->all();
+        $items = ArrayHelper::map($units,'id','unit');
+        echo $form->field($model, 'unit_id')->dropDownList($items);
+    ?>
+
+<!--    --><?//= $form->field($model, 'last_operation_id')->textInput() ?>
+
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\NomenclatureList;
+use app\models\UnitMeasurement;
 
 /**
- * NomenclatureListSearch represents the model behind the search form of `app\models\NomenclatureList`.
+ * UnitMeasurementSearch represents the model behind the search form of `app\models\UnitMeasurement`.
  */
-class NomenclatureListSearch extends NomenclatureList
+class UnitMeasurementSearch extends UnitMeasurement
 {
     /**
      * {@inheritdoc}
@@ -17,9 +17,8 @@ class NomenclatureListSearch extends NomenclatureList
     public function rules()
     {
         return [
-            [['id', 'category_id', 'subcategory_id', 'last_operation_id', 'unit_id'], 'integer'],
-            [['name', 'reg_number'], 'safe'],
-            [['count_in_store'], 'number'],
+            [['id'], 'integer'],
+            [['unit'], 'safe'],
         ];
     }
 
@@ -41,7 +40,7 @@ class NomenclatureListSearch extends NomenclatureList
      */
     public function search($params)
     {
-        $query = NomenclatureList::find();
+        $query = UnitMeasurement::find();
 
         // add conditions that should always apply here
 
@@ -60,15 +59,9 @@ class NomenclatureListSearch extends NomenclatureList
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'category_id' => $this->category_id,
-            'subcategory_id' => $this->subcategory_id,
-            'unit_id' => $this->unit_id,
-            'count_in_store' => $this->count_in_store,
-            'last_operation_id' => $this->last_operation_id,
         ]);
 
-        $query->andFilterWhere(['ilike', 'name', $this->name])
-            ->andFilterWhere(['ilike', 'reg_number', $this->reg_number]);
+        $query->andFilterWhere(['ilike', 'unit', $this->unit]);
 
         return $dataProvider;
     }

@@ -54,6 +54,10 @@ AppAsset::register($this);
                 'url' => ['/nomenclature-category/index'],
             ],
             [
+                'label' => 'Единицы измерения',
+                'url' => ['/unit-measurement/index'],
+            ],
+            [
                 'label' => 'Номенклатура',
                 'url' => ['/nomenclature-list/index'],
             ],

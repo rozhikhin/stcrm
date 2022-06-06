@@ -47,12 +47,12 @@ class OperationHistory extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'date' => 'Date',
-            'type' => 'Type',
-            'nomenclature' => 'Nomenclature',
-            'count_in_operation' => 'Count In Operation',
-            'employee' => 'Employee',
-            'last_operation' => 'Last Operation',
+            'date' => 'Дата',
+            'type' => 'Тип опреции',
+            'nomenclature' => 'Номенклатура',
+            'count_in_operation' => 'Количество товара в оперции',
+            'employee' => 'Сотрудник',
+            'last_operation' => 'Последняя операция (пользолватель + номенклатура)',
         ];
     }
 

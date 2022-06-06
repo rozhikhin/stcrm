@@ -3,9 +3,9 @@
 use yii\db\Migration;
 
 /**
- * Class m220601_191212_add_index_and_fk_in_category_for_parfen_category
+ * Class m220601_191212_add_index_and_fk_in_category_for_parent_category
  */
-class m220601_191212_add_index_and_fk_in_category_for_parfen_category extends Migration
+class m220601_191212_add_index_and_fk_in_category_for_parent_category extends Migration
 {
     /**
      * {@inheritdoc}
@@ -16,14 +16,14 @@ class m220601_191212_add_index_and_fk_in_category_for_parfen_category extends Mi
         $this->createIndex(
             'idx-nomenclature_category-parent',
             'nomenclature_category',
-            'parent'
+            'parent_id'
         );
 
         // add foreign key for table `tool_category (operation_history)`
         $this->addForeignKey(
             'fk-nomenclature_category-parent',
             'nomenclature_category',
-            'parent',
+            'parent_id',
             'nomenclature_category',
             'id',
             'RESTRICT'
@@ -35,7 +35,7 @@ class m220601_191212_add_index_and_fk_in_category_for_parfen_category extends Mi
      */
     public function safeDown()
     {
-        echo "m220601_191212_add_index_and_fk_in_category_for_parfen_category cannot be reverted.\n";
+        echo "m220601_191212_add_index_and_fk_in_category_for_parent_category cannot be reverted.\n";
 
         return false;
     }
@@ -49,7 +49,7 @@ class m220601_191212_add_index_and_fk_in_category_for_parfen_category extends Mi
 
     public function down()
     {
-        echo "m220601_191212_add_index_and_fk_in_category_for_parfen_category cannot be reverted.\n";
+        echo "m220601_191212_add_index_and_fk_in_category_for_parent_category cannot be reverted.\n";
 
         return false;
     }

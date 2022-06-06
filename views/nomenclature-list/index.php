@@ -10,7 +10,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\NomenclatureListSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Nomenclature Lists';
+$this->title = 'Список номенклатуры';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="nomenclature-list-index">
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Nomenclature List', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Новая номенклатура', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -28,22 +28,29 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'id',
+//            'id',
             'name',
             'reg_number',
             [
                 'attribute' => 'category_id',
-                'value' => 'parent.name'
+                'value' => 'category.name'
             ],
 //            'subcategory_id',
             'count_in_store',
-//            'last_operation_id',
+            [
+                'attribute' => 'unit_id',
+                'value' => 'unit.unit'
+            ],
             [
                 'attribute' => 'last_operation_id',
                 'value' => function (NomenclatureList $data) {
-                    return Html::a(Html::encode($data->lastOperation->operationType->name), Url::to(['//operation-history/view', 'id' => $data->lastOperation->id]));
+                                if ($data->lastOperation) {
+                                    return Html::a(Html::encode($data->lastOperation->operationType->name), Url::to(['//operation-history/view', 'id' => $data->lastOperation->id]));
+                                } else {
+                                    return null;
+                                }
                 },
-        'format' => 'raw',
+                'format' => 'raw',
             ],
             [
                 'class' => ActionColumn::className(),

@@ -28,6 +28,10 @@ $this->title = 'My Yii Application';
                 <p><a class="btn btn-outline-secondary" href="<?=Url::to(['nomenclature-category/index']); ?>">Перейти &raquo;</a></p>
             </div>
             <div class="col-lg-4 mt-5 d-flex flex-column align-items-center">
+                <h2>Единицы измерения</h2>
+                <p><a class="btn btn-outline-secondary" href="<?=Url::to(['unit-measurement/index']); ?>">Перейти &raquo;</a></p>
+            </div>
+            <div class="col-lg-4 mt-5 d-flex flex-column align-items-center">
                 <h2>Номенклатура</h2>
                 <p><a class="btn btn-outline-secondary" href="<?=Url::to(['nomenclature-list/index']); ?>">Перейти &raquo;</a></p>
             </div>
