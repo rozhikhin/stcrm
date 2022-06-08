@@ -28,16 +28,30 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-//            'id',
-            'date',
-            'type',
-            'nomenclature',
+            [
+                'attribute' => 'type_id',
+                'value' => 'operationTypeName'
+            ],
+            [
+                'attribute' => 'nomenclature_id',
+                'value' => 'nomenclatureName'
+            ],
             'count_in_operation',
-            'employee',
+            [
+                'attribute' => 'employee_id',
+                'value' => 'employeeFullName'
+            ],
             'last_operation',
             [
-                'class' => ActionColumn::className(),
+                'attribute' => 'created_at',
+                'value' => 'createdDate'
+            ],
+            [
+                'attribute' => 'updated_at',
+                'value' => 'updatedDate'
+            ],
+            [
+                'class' => ActionColumn::class,
                 'urlCreator' => function ($action, OperationHistory $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  }

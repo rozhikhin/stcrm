@@ -10,6 +10,7 @@ use Yii;
  * @property int $id
  * @property string|null $lname
  * @property string|null $fname
+ * @property string|null $fullName
  * @property string|null $phone
  * @property string|null $email
  * @property int|null $department_id
@@ -66,5 +67,15 @@ class Employee extends \yii\db\ActiveRecord
     public function getDepartment()
     {
         return $this->hasOne(Department::className(), ['id' => 'department_id']);
+    }
+
+    /**
+     * Gets full name.
+     *
+     * @return String
+     */
+    public function getFullName()
+    {
+        return $this->lname . ' ' . $this->fname;
     }
 }

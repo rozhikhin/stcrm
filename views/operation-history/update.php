@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\OperationHistory */
 
-$this->title = 'Update Operation History: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Operation Histories', 'url' => ['index']];
+$this->title = 'Изменить операцию ' . $model->id;
+$this->params['breadcrumbs'][] = ['label' => 'История операций', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Изменить';
 ?>
 <div class="operation-history-update">
 

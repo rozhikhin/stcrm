@@ -15,11 +15,7 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
-
-    <?= $form->field($model, 'date') ?>
-
-    <?= $form->field($model, 'type') ?>
+    <?= $form->field($model, 'type_id') ?>
 
     <?= $form->field($model, 'nomenclature') ?>
 
@@ -28,6 +24,10 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'employee') ?>
 
     <?php // echo $form->field($model, 'last_operation') ?>
+
+    <?php // echo $form->field($model, 'updated_at') ?>
+
+    <?php // echo $form->field($model, 'created_at') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

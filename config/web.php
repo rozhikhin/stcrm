@@ -55,6 +55,9 @@ $config = [
             'rules' => [
             ],
         ],
+        'formatter' => [
+            'dateFormat' => 'dd.MM.Y H.m.s',
+        ],
 
     ],
     'params' => $params,

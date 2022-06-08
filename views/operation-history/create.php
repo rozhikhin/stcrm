@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\OperationHistory */
 
-$this->title = 'Create Operation History';
-$this->params['breadcrumbs'][] = ['label' => 'Operation Histories', 'url' => ['index']];
+$this->title = 'Новая операция';
+$this->params['breadcrumbs'][] = ['label' => 'История операций', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="operation-history-create">

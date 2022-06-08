@@ -42,9 +42,9 @@ class NomenclatureList extends \yii\db\ActiveRecord
             [['name'], 'string', 'max' => 200],
             [['unit_id'], 'string', 'max' => 50],
             [['reg_number'], 'string', 'max' => 100],
-            [['unit_id'], 'exist', 'skipOnError' => true, 'targetClass' => UnitMeasurement::className(), 'targetAttribute' => ['unit_id' => 'id']],
-            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => NomenclatureCategory::className(), 'targetAttribute' => ['category_id' => 'id']],
-            [['last_operation_id'], 'exist', 'skipOnError' => true, 'targetClass' => OperationHistory::className(), 'targetAttribute' => ['last_operation_id' => 'id']],
+            [['unit_id'], 'exist', 'skipOnError' => true, 'targetClass' => UnitMeasurement::class, 'targetAttribute' => ['unit_id' => 'id']],
+            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => NomenclatureCategory::class, 'targetAttribute' => ['category_id' => 'id']],
+            [['last_operation_id'], 'exist', 'skipOnError' => true, 'targetClass' => OperationHistory::class, 'targetAttribute' => ['last_operation_id' => 'id']],
         ];
     }
 
@@ -72,7 +72,7 @@ class NomenclatureList extends \yii\db\ActiveRecord
      */
     public function getCategory()
     {
-        return $this->hasOne(NomenclatureCategory::className(), ['id' => 'category_id']);
+        return $this->hasOne(NomenclatureCategory::class, ['id' => 'category_id']);
     }
 
     /**
@@ -82,7 +82,7 @@ class NomenclatureList extends \yii\db\ActiveRecord
      */
     public function getCategory0()
     {
-        return $this->hasOne(NomenclatureCategory::className(), ['id' => 'category_id']);
+        return $this->hasOne(NomenclatureCategory::class, ['id' => 'category_id']);
     }
 
     /**
@@ -92,7 +92,7 @@ class NomenclatureList extends \yii\db\ActiveRecord
      */
     public function getLastOperation()
     {
-        return $this->hasOne(OperationHistory::className(), ['id' => 'last_operation_id']);
+        return $this->hasOne(OperationHistory::class, ['id' => 'last_operation_id']);
     }
 
     /**
@@ -102,6 +102,6 @@ class NomenclatureList extends \yii\db\ActiveRecord
      */
     public function getUnit()
     {
-        return $this->hasOne(UnitMeasurement::className(), ['id' => 'unit_id']);
+        return $this->hasOne(UnitMeasurement::class, ['id' => 'unit_id']);
     }
 }

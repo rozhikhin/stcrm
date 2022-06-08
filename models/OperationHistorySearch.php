@@ -17,8 +17,8 @@ class OperationHistorySearch extends OperationHistory
     public function rules()
     {
         return [
-            [['id', 'type', 'nomenclature', 'employee', 'last_operation'], 'integer'],
-            [['date'], 'safe'],
+            [['id', 'type_id', 'nomenclature_id', 'employee_id', 'last_operation'], 'integer'],
+            [['date', 'updated_at', 'created_at'], 'safe'],
             [['count_in_operation'], 'number'],
         ];
     }
@@ -60,12 +60,13 @@ class OperationHistorySearch extends OperationHistory
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'date' => $this->date,
-            'type' => $this->type,
-            'nomenclature' => $this->nomenclature,
+            'type_id' => $this->type_id,
+            'nomenclature_id' => $this->nomenclature_id,
             'count_in_operation' => $this->count_in_operation,
-            'employee' => $this->employee,
+            'employee_id' => $this->employee,
             'last_operation' => $this->last_operation,
+            'updated_at' => $this->updated_at,
+            'created_at' => $this->created_at,
         ]);
 
         return $dataProvider;

@@ -31,6 +31,8 @@ class OperationHistoryController extends Controller
         );
     }
 
+
+
     /**
      * Lists all OperationHistory models.
      *
