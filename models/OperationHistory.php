@@ -56,7 +56,8 @@ class OperationHistory extends ActiveRecord
     {
         return [
             [['created_at'], 'safe'],
-            [['type_id', 'nomenclature_id', 'employee_id', 'last_operation'], 'default', 'value' => null],
+            [['type_id', 'nomenclature_id', 'employee_id'], 'default', 'value' => null],
+            [['last_operation'], 'default', 'value' => 1],
             [['type_id', 'nomenclature_id', 'employee_id', 'last_operation'], 'integer'],
             [['count_in_operation'], 'number'],
         ];
@@ -187,5 +188,27 @@ class OperationHistory extends ActiveRecord
         return null;
     }
 
+    public function beforeSave($insert) {
+        if ($this->isNewRecord) {
+            $isLastOperation = $this::findOne([
+                'nomenclature_id' => $this->nomenclature_id,
+                'employee_id' => $this->employee_id,
+                'last_operation' => 1]);
+            if ($isLastOperation) {
+                $isLastOperation->last_operation = 0;
+                $isLastOperation->save();
+            }
+        }
+        return parent::beforeSave($insert);
+    }
+
+    public function afterSave($insert, $changedAttributes) {
+        parent::afterSave($insert, $changedAttributes);
+        if($insert) {
+            $lastOperationNomencature = NomenclatureList::findOne(['id' => $this->nomenclature_id]);
+            $lastOperationNomencature->last_operation_id = $this->id;
+            $lastOperationNomencature->save(false);
+        }
+    }
 
 }
