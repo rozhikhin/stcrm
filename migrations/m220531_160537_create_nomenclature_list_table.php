@@ -14,17 +14,15 @@ class m220531_160537_create_nomenclature_list_table extends Migration
     {
         $this->createTable('{{%nomenclature_list}}', [
             'id' => $this->primaryKey(),
-            'name' => $this->string(200),
-            'reg_number' => $this->string(100), // Инвентарный номер
-            'category_id' => $this->integer()->defaultValue(1), // Категория - Ссылка - nomenclature_category->id
-            'subcategory_id' => $this->integer(), // Подкатегория - Ссылка - nomenclature_category->id
-            'count_in_store' => $this->float(), // Остаток на складе
-            'unit_id' => $this->integer(), // Единицы измерения - Ссылка -
-            'last_operation_id' => $this->integer(), // Номер последней операции - Ссылка на последнюю операцию с этим товаром - operation_history->id
-//            'last_operation_type' => $this->integer(), // Тип последней операции - Ссылка - operation_history->type
-//            'last_operation_date' => $this->date(), // Дата последней операции - Ссылка - operation_history->date
-//            'last_user' => $this->integer(), // Сотрудник последней в операции - Ссылка - operation_history->user
+            'name' => $this->string(200)->comment('Название номенклатуры'),
+            'reg_number' => $this->string(100)->comment('Регистрационный (инвентарный номер'),
+            'category_id' => $this->integer()->defaultValue(1)->comment('Категория номенклатуры - ссылка на таблицу категорий (nomenclature_category)'),
+            'subcategory_id' => $this->integer()->comment('Подкатегория номенклатуры - ссылка на таблицу категорий (nomenclature_category)'),
+            'count_in_store' => $this->float()->comment('Остаток на складе'),
+            'unit_id' => $this->integer()->comment('Единицы измерения - Ссылка на таблицу единиц измерений (unit_measurement)'),
+            'last_operation_id' => $this->integer()->comment('Последняя операция - Ссылка на последнюю операцию с этим товаром - (operation_history)'),
         ]);
+        $this->addCommentOnTable('{{%nomenclature_list}}', 'Таблица со списком номенклатуры');
 
         // creates index for column `category_id`
         $this->createIndex(

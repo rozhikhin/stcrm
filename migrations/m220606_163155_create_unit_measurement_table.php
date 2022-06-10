@@ -14,8 +14,10 @@ class m220606_163155_create_unit_measurement_table extends Migration
     {
         $this->createTable('{{%unit_measurement}}', [
             'id' => $this->primaryKey(),
-            'unit' => $this->string(50),
+            'unit' => $this->string(20)->notNull()->unique()->comment('Название единицы измерения'),
+            'description' => $this->string(100)->notNull()->unique()->comment('Описание единицы измерения'),
         ]);
+        $this->addCommentOnTable('{{%unit_measurement}}', 'Таблица единиц измерений');
     }
 
     /**

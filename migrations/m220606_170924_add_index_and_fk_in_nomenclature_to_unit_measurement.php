@@ -9,6 +9,8 @@ class m220606_170924_add_index_and_fk_in_nomenclature_to_unit_measurement extend
 {
     /**
      * {@inheritdoc}
+     *
+     * Дабавить индекс и внешний ключ для таблицы номенклатуры - связь с таблицей единиц измерений
      */
     public function safeUp()
     {
@@ -35,23 +37,8 @@ class m220606_170924_add_index_and_fk_in_nomenclature_to_unit_measurement extend
      */
     public function safeDown()
     {
-        echo "m220606_170924_add_index_and_fk_in_nomenclature_to_unit_measurement cannot be reverted.\n";
-
-        return false;
+        $this->dropIndex('idx-nomenclature_list-unit_id', 'nomenclature_list');
+        $this->dropForeignKey('fk-nomenclature_list-unit_id', 'nomenclature_list');
     }
 
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m220606_170924_add_index_and_fk_in_nomenclature_to_unit_measurement cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }

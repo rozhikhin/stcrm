@@ -9,6 +9,8 @@ class m220601_153725_add_index_and_fk_from_nomeclature_list_to_operation_history
 {
     /**
      * {@inheritdoc}
+     *
+     * Добавить индекс и внешний ключ для таблицы с историей операций (связь с таблицей номенклатуры)
      */
     public function safeUp()
     {
@@ -39,18 +41,4 @@ class m220601_153725_add_index_and_fk_from_nomeclature_list_to_operation_history
         $this->dropForeignKey('fk-nomenclature_list-last_operation_id', 'nomenclature_list');
     }
 
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m220601_153725_add_index_and_fk_from_nomeclature_list_to_operation_history cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }

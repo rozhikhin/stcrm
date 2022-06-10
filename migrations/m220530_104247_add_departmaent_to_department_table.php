@@ -9,6 +9,9 @@ class m220530_104247_add_departmaent_to_department_table extends Migration
 {
     /**
      * {@inheritdoc}
+     *
+     * Добавить подразделение по-умолчанию
+     *
      */
     public function safeUp()
     {
@@ -24,19 +27,4 @@ class m220530_104247_add_departmaent_to_department_table extends Migration
     {
         $this->delete('department');
     }
-
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m220530_104247_add_departmaent_to_department_table cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }

@@ -14,8 +14,9 @@ class m220530_080820_create_department_table extends Migration
     {
         $this->createTable('{{%department}}', [
             'id' => $this->primaryKey(),
-            'name' => $this->string(250)
+            'name' => $this->string(250)->unique()->comment('Название подразделения')
         ]);
+        $this->addCommentOnTable('{{%department}}', 'Подразделения организации');
     }
 
     /**

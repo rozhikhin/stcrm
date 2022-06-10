@@ -14,16 +14,17 @@ class m220530_080828_create_user_table extends Migration
     {
         $this->createTable('{{%user}}', [
             'id' => $this->primaryKey(),
-            'fname' => $this->string(100)->notNull(),
-            'lname' => $this->string(100),
-            'username' => $this->string(100)->notNull(),
-            'email' => $this->string(100),
-            'password' => $this->string(200),
-            'phone' => $this->string(30),
-            'department_id' => $this->integer()->defaultValue(1),
-            'auth_key' => $this->string(200),
-            'access_token' => $this->string(200),
+            'fname' => $this->string(100)->notNull()->comment('Имя пользователя'),
+            'lname' => $this->string(100)->comment('Фамилия пользователя'),
+            'username' => $this->string(100)->notNull()->comment('Логин пользователя'),
+            'email' => $this->string(100)->unique()->comment('Email пользователя'),
+            'password' => $this->string(200)->comment('Хеш пароля пользователя'),
+            'phone' => $this->string(30)->comment('Телефон пользователя'),
+            'department_id' => $this->integer()->defaultValue(1)->comment('Ссылка - Department - подразделение пользователя'),
+            'auth_key' => $this->string(200)->comment('Ключ авторизации'),
+            'access_token' => $this->string(200)->comment('Токен доступа'),
         ]);
+        $this->addCommentOnTable('{{%user}}', 'Таблица пользователей системы');
 
 
         // creates index for column `department_id`
@@ -49,6 +50,8 @@ class m220530_080828_create_user_table extends Migration
      */
     public function safeDown()
     {
+        $this->dropIndex('idx-user-department_id', 'user');
+        $this->dropForeignKey('fk-user-department_id', 'user');
         $this->dropTable('{{%user}}');
     }
 }

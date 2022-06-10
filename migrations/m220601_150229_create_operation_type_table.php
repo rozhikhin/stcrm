@@ -14,8 +14,9 @@ class m220601_150229_create_operation_type_table extends Migration
     {
         $this->createTable('{{%operation_type}}', [
             'id' => $this->primaryKey(),
-            'name' => $this->string(200)
+            'name' => $this->string(200)->notNull()->unique()->comment('Название типа операций')
         ]);
+        $this->addCommentOnTable('{{%operation_type}}', 'Таблица типов операций');
     }
 
     /**

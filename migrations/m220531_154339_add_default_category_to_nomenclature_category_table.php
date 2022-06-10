@@ -9,10 +9,13 @@ class m220531_154339_add_default_category_to_nomenclature_category_table extends
 {
     /**
      * {@inheritdoc}
+     *
+     * Добавить котегорию по-умолчанию
      */
     public function safeUp()
     {
         $this->insert('nomenclature_category', [
+            'id' => 1,
             'name' => 'Главная категория',
         ]);
     }
@@ -25,18 +28,4 @@ class m220531_154339_add_default_category_to_nomenclature_category_table extends
         $this->delete('nomenclature_category');
     }
 
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m220531_154339_add_default_category_to_nomenclature_category_table cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }

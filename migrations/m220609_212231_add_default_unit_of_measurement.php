@@ -12,7 +12,13 @@ class m220609_212231_add_default_unit_of_measurement extends Migration
      */
     public function safeUp()
     {
-
+        $this->batchInsert('{{%unit_measurement}}',['id', 'unit', 'description'], [
+            ['id' => 1, 'unit' => 'шт', 'description' => 'Штука'],
+            ['id' => 2, 'unit' => 'л', 'description' => 'Литр'],
+            ['id' => 3, 'unit' => 'кг', 'description' => 'Килограмм'],
+            ['id' => 4, 'unit' => 'м', 'description' => 'Метр'],
+            ['id' => 5, 'unit' => 'см', 'description' => 'Сантиметр'],
+        ]);
     }
 
     /**
@@ -20,23 +26,7 @@ class m220609_212231_add_default_unit_of_measurement extends Migration
      */
     public function safeDown()
     {
-        echo "m220609_212231_add_default_unit_of_measurement cannot be reverted.\n";
-
-        return false;
+        $this->delete('{{%unit_measurement}}');
     }
 
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m220609_212231_add_default_unit_of_measurement cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }

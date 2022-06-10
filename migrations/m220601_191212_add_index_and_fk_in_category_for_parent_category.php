@@ -9,6 +9,8 @@ class m220601_191212_add_index_and_fk_in_category_for_parent_category extends Mi
 {
     /**
      * {@inheritdoc}
+     *
+     * Добавить индекс и внешний ключ для таблицы номенклатуры (связь с таблицей категорий номенклатуры)
      */
     public function safeUp()
     {
@@ -35,23 +37,8 @@ class m220601_191212_add_index_and_fk_in_category_for_parent_category extends Mi
      */
     public function safeDown()
     {
-        echo "m220601_191212_add_index_and_fk_in_category_for_parent_category cannot be reverted.\n";
-
-        return false;
+        $this->dropIndex('idx-nomenclature_category-parent', 'nomenclature_category');
+        $this->dropForeignKey('fk-nomenclature_category-parent', 'nomenclature_category');
     }
 
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m220601_191212_add_index_and_fk_in_category_for_parent_category cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }
