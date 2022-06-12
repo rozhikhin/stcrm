@@ -12,6 +12,10 @@ use Yii;
  */
 class OperationType extends \yii\db\ActiveRecord
 {
+    const INCOME_GOODS = 1; // Поступление товара
+    const EXPENDITURE_GOODS = 2; // Расход товара
+    const ISSUING_GOODS = 3; // Выдача штучного товара
+    const RETURNS_GOODS = 4; // Возврат штучного товара
     /**
      * {@inheritdoc}
      */

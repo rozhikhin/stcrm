@@ -188,26 +188,46 @@ class OperationHistory extends ActiveRecord
         return null;
     }
 
-    public function beforeSave($insert) {
+    /**
+     * @return void
+     *
+     * Установка флага последней операции для связки сотрудник - номенклатура
+     * Используется для отчета последних операций с участием сотрудника
+     */
+    public function setLastOperationFlag()
+    {
+        $lastOperation = $this::findOne([
+            'nomenclature_id' => $this->nomenclature_id,
+            'employee_id' => $this->employee_id,
+            'last_operation' => 1]);
+        if ($lastOperation) {
+            $lastOperation->last_operation = 0;
+            $lastOperation->save();
+        }
+    }
+
+    /**
+     * @param $insert
+     * @return bool
+     */
+    public function beforeSave($insert)
+    {
         if ($this->isNewRecord) {
-            $isLastOperation = $this::findOne([
-                'nomenclature_id' => $this->nomenclature_id,
-                'employee_id' => $this->employee_id,
-                'last_operation' => 1]);
-            if ($isLastOperation) {
-                $isLastOperation->last_operation = 0;
-                $isLastOperation->save();
-            }
+            $this->setLastOperationFlag();
         }
         return parent::beforeSave($insert);
     }
 
+    /**
+     * @param $insert
+     * @param $changedAttributes
+     * @return void
+     */
     public function afterSave($insert, $changedAttributes) {
         parent::afterSave($insert, $changedAttributes);
         if($insert) {
-            $lastOperationNomencature = NomenclatureList::findOne(['id' => $this->nomenclature_id]);
-            $lastOperationNomencature->last_operation_id = $this->id;
-            $lastOperationNomencature->save(false);
+            $nomenclature = NomenclatureList::findOne(['id' => $this->nomenclature_id]);
+            $nomenclature->updateAfterAddNewOperation($nomenclature, $this);
         }
     }
 

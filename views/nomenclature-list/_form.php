@@ -27,7 +27,7 @@ use yii\widgets\ActiveForm;
 
 <!--    --><?//= $form->field($model, 'subcategory_id')->textInput() ?>
 
-    <?= $form->field($model, 'count_in_store')->textInput() ?>
+<!--    --><?//= $form->field($model, 'count_in_store')->textInput() ?>
 
     <?php
         $units= UnitMeasurement::find()->all();

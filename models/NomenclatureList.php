@@ -39,6 +39,7 @@ class NomenclatureList extends \yii\db\ActiveRecord
             [['category_id', 'subcategory_id', 'last_operation_id'], 'default', 'value' => null],
             [['category_id', 'subcategory_id', 'last_operation_id'], 'integer'],
             [['count_in_store'], 'number'],
+            [['count_in_store'], 'default', 'value' => 0],
             [['name'], 'string', 'max' => 200],
             [['unit_id'], 'string', 'max' => 50],
             [['reg_number'], 'string', 'max' => 100],
@@ -103,5 +104,41 @@ class NomenclatureList extends \yii\db\ActiveRecord
     public function getUnit()
     {
         return $this->hasOne(UnitMeasurement::class, ['id' => 'unit_id']);
+    }
+
+    /**
+     * @param OperationType $operationType
+     * @param $count
+     * @return void
+     *
+     * Изменение количества номенклатуры в зависимости от типа операции
+     */
+    public function changeCountInStore(OperationType $operationType, $count)
+    {
+        switch ($operationType->id) {
+            case OperationType::INCOME_GOODS :
+            case OperationType::RETURNS_GOODS :
+                $this->count_in_store += $count;
+                break;
+            case OperationType::EXPENDITURE_GOODS:
+            case OperationType::ISSUING_GOODS:
+                $this->count_in_store -= $count;
+                break;
+        }
+    }
+
+    /**
+     * @param NomenclatureList $model
+     * @param OperationHistory $operation
+     * @return void
+     *
+     * Установка ссылки на последнюю операцию с данной номенклатурой в списке номенклатуры
+     * и изменение количества номенклатуры в зависимости от типа операции
+     */
+    public function updateAfterAddNewOperation(NomenclatureList $model, OperationHistory $operation)
+    {
+        $model->last_operation_id = $operation->id;
+        $model->changeCountInStore($operation->operationType, $operation->count_in_operation);
+        $model->save(false);
     }
 }

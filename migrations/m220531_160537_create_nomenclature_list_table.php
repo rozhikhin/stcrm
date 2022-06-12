@@ -18,7 +18,7 @@ class m220531_160537_create_nomenclature_list_table extends Migration
             'reg_number' => $this->string(100)->comment('Регистрационный (инвентарный номер'),
             'category_id' => $this->integer()->defaultValue(1)->comment('Категория номенклатуры - ссылка на таблицу категорий (nomenclature_category)'),
             'subcategory_id' => $this->integer()->comment('Подкатегория номенклатуры - ссылка на таблицу категорий (nomenclature_category)'),
-            'count_in_store' => $this->float()->comment('Остаток на складе'),
+            'count_in_store' => $this->float()->notNull()->defaultValue(0)->comment('Остаток на складе'),
             'unit_id' => $this->integer()->comment('Единицы измерения - Ссылка на таблицу единиц измерений (unit_measurement)'),
             'last_operation_id' => $this->integer()->comment('Последняя операция - Ссылка на последнюю операцию с этим товаром - (operation_history)'),
         ]);
