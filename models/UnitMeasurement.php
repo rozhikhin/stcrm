@@ -9,6 +9,7 @@ use Yii;
  *
  * @property int $id
  * @property string|null $unit
+ * @property string|null $description
  *
  * @property NomenclatureList[] $nomenclatureLists
  */
@@ -28,7 +29,8 @@ class UnitMeasurement extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['unit'], 'string', 'max' => 50],
+            [['unit', 'description'], 'string', 'max' => 50],
+            [['unit', 'description'], 'required'],
         ];
     }
 
@@ -40,6 +42,7 @@ class UnitMeasurement extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'unit' => 'Единица измерения',
+            'description' => 'Описание'
         ];
     }
 
