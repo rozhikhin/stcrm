@@ -37,8 +37,8 @@ class m220606_170924_add_index_and_fk_in_nomenclature_to_unit_measurement extend
      */
     public function safeDown()
     {
-        $this->dropIndex('idx-nomenclature_list-unit_id', 'nomenclature_list');
-        $this->dropForeignKey('fk-nomenclature_list-unit_id', 'nomenclature_list');
+//        $this->dropIndex('idx-nomenclature_list-unit_id', 'nomenclature_list');
+//        $this->dropForeignKey('fk-nomenclature_list-unit_id', 'nomenclature_list');
     }
 
 }

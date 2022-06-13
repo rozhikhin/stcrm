@@ -26,6 +26,8 @@ class m220609_212231_add_default_unit_of_measurement extends Migration
      */
     public function safeDown()
     {
+        $this->dropIndex('idx-nomenclature_list-unit_id', 'nomenclature_list');
+        $this->dropForeignKey('fk-nomenclature_list-unit_id', 'nomenclature_list');
         $this->delete('{{%unit_measurement}}');
     }
 

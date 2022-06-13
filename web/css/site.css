@@ -2,27 +2,18 @@ html {
     position: relative;
     min-height: 100%;
 }
-
+body {
+    background-color: #F9FAFC;
+}
 .footer {
     line-height: 1.5rem;
-    background-color: #ccc;
+    background-color: #F9FAFC;
+    border-top: 1px solid #c6c8ca;
 }
 
 .nav-link:hover {
     transition: all 0.4s;
 }
-
-/*.nav-link-collapse:after {*/
-/*    float: right;*/
-/*    content: '\f067';*/
-/*    font-family: 'FontAwesome';*/
-/*}*/
-
-/*.nav-link-show:after {*/
-/*    float: right;*/
-/*    content: '\f068';*/
-/*    font-family: 'FontAwesome';*/
-/*}*/
 
 .nav-item ul.nav-second-level {
     padding-left: 0;
@@ -37,6 +28,9 @@ form .help-block {
 }
 
 @media (min-width: 992px) {
+    .body {
+        background-color: #F9FAFC !important;
+    }
     .container, .container-sm, .container-md, .container-lg, .container-xl {
         max-width: calc(100% - 230px);
         margin: 0;
@@ -56,10 +50,6 @@ form .help-block {
     .navbar-expand-lg .sidenav {
         flex-direction: column;
     }
-
-    /*.content-wrapper {*/
-    /*    margin-left: 230px;*/
-    /*}*/
 
     main {
         max-width: 100%;

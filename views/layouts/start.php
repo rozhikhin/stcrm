@@ -26,12 +26,9 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 
 
-<main role="main" class="flex-shrink-0 mw-100 ml-0 ">
-    <div class="container">
-<!--        --><?//= Breadcrumbs::widget([
-//            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-//        ]) ?>
-        <?= Alert::widget() ?>
+<main role="main" class="flex-shrink-0 mw-100 ml-0 mt-5">
+    <div class="container d-flex flex-column align-items-center mt-5 ">
+        <h4>Учетная система ЗАО "Ставмет"</h4>
         <?= $content ?>
     </div>
 </main>

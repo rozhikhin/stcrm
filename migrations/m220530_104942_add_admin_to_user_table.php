@@ -16,10 +16,10 @@ class m220530_104942_add_admin_to_user_table extends Migration
     {
         $this->insert('user', [
             'id' => 1,
-            'fname' => 'Admin',
-            'username' => 'admin',
+            'fname' => 'Снежана',
+            'username' => 'r.snezhana',
             'email' => 'admin@site.ru',
-            'password' => Yii::$app->getSecurity()->generatePasswordHash('admin'),
+            'password' => Yii::$app->getSecurity()->generatePasswordHash('Hz,byf34'),
             'department_id' => 1
         ]);
     }
