@@ -37,3 +37,4 @@ docker/postgres/data
 runtime/*
 .bash_history
 web/assets/*
+config/db.php
