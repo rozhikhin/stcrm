@@ -35,8 +35,8 @@ AppAsset::register($this);
 
 <footer class="footer mt-auto py-3 text-muted ml-auto mr-auto w-100 >
     <div class="container">
-        <p class="float-left">&copy; My Company <?= date('Y') ?></p>
-        <p class="float-right"><?= Yii::powered() ?></p>
+        <p class="float-left">&copy; ITWK.RU <?= date('Y') ?></p>
+        <p class="float-right"><a href="mailto:admin@itwk.ru">admin@itwk.ru</a></p>
     </div>
 </footer>
 
