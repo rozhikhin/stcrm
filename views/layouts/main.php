@@ -27,6 +27,7 @@ AppAsset::register($this);
 
 <header>
     <?php
+
     NavBar::begin([
         'brandLabel' => Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
@@ -35,40 +36,64 @@ AppAsset::register($this);
         ],
     ]);
     echo Nav::widget([
-        'options' => ['class' => 'navbar-nav mr-auto pt-5 pl-2 sidenav '],
+        'options' => ['class' => 'navbar-nav mr-auto pt-2 pl-2 sidenav list-group border-0'],
         'items' => [
             [
-                'label' => 'Отделы',
-                'url' => ['/department/index'],
-//                'items' => [
-//                    ['label' => 'Item1', 'url' => ['#']],
-//                    ['label' => 'Item2', 'url' => ['#']] ,
-//                ],
+                'label' => 'Документы',
+                'options' => ['class' => 'h4 text-white '],
+                'items' => [
+                    [
+                        'label' => 'Организации (свои)',
+                        'url' => '/organization/index'
+                    ],
+                    [
+                        'label' => 'Поставщики',
+                        'url' => '/supplier/index'
+                    ],
+                    [
+                        'label' => 'Накладные',
+                        'url' => '/invoice/index'
+                    ],
+                ]
             ],
+            '<li class="divider"><hr class="bg-secondary mr-1"></li>',
             [
-                'label' => 'Сотрудники',
-                'url' => ['/employee/index'],
+                'label' => 'Склад',
+                'options' => ['class' => 'h4 text-white    '],
+                'items' => [
+                    [
+                        'label' => 'Отделы',
+                        'url' => ['/department/index'],
+                    ],
+                    [
+                        'label' => 'Сотрудники',
+                        'url' => ['/employee/index'],
+                    ],
+                    [
+                        'label' => 'Категории',
+                        'url' => ['/nomenclature-category/index'],
+                    ],
+                    [
+                        'label' => 'Единицы измерения',
+                        'url' => ['/unit-measurement/index'],
+                    ],
+                    [
+                        'label' => 'Номенклатура',
+                        'url' => ['/nomenclature-list/index'],
+                    ],
+                    [
+                        'label' => 'Типы оперций',
+                        'url' => ['/operation-type/index'],
+                    ],
+                    [
+                        'label' => 'Операции',
+                        'url' => ['/operation-history/index'],
+                    ],
+                ]
             ],
-            [
-                'label' => 'Категории',
-                'url' => ['/nomenclature-category/index'],
-            ],
-            [
-                'label' => 'Единицы измерения',
-                'url' => ['/unit-measurement/index'],
-            ],
-            [
-                'label' => 'Номенклатура',
-                'url' => ['/nomenclature-list/index'],
-            ],
-            [
-                'label' => 'Типы оперций',
-                'url' => ['/operation-type/index'],
-            ],
-            [
-                'label' => 'Операции',
-                'url' => ['/operation-history/index'],
-            ],
+            '<li class="divider"><hr class="bg-secondary mr-1"></li>',
+
+
 
 
             Yii::$app->user->isGuest ?
@@ -99,8 +124,6 @@ AppAsset::register($this);
         <?= $content ?>
     </div>
 </main>
-
-
 <?php $this->endBody() ?>
 </body>
 </html>

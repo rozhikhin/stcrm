@@ -100,7 +100,7 @@ class OperationHistory extends ActiveRecord
     public function getCreatedDate()
     {
         if ($this->created_at) {
-            return Yii::$app->formatter->asDate($this->created_at);;
+            return Yii::$app->formatter->asDate($this->created_at);
         } else {
             return null;
         }
@@ -116,7 +116,7 @@ class OperationHistory extends ActiveRecord
     public function getUpdatedDate()
     {
         if ($this->created_at) {
-            return Yii::$app->formatter->asDate($this->updated_at);;
+            return Yii::$app->formatter->asDate($this->updated_at);
         } else {
             return null;
         }
