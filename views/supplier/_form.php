@@ -16,7 +16,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
+<!--    --><?//= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'comment')->textarea(['maxlength' => false]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>

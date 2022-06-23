@@ -11,6 +11,7 @@ use Yii;
  * @property string $name Название поставщика
  * @property string|null $address Адрес поставщика
  * @property string|null $phone Телефон поставщика
+ * @property string|null $comment Комментарий
  *
  * @property Invoice[] $invoices
  */
@@ -34,6 +35,7 @@ class Supplier extends \yii\db\ActiveRecord
             [['name'], 'string', 'max' => 200],
             [['address'], 'string', 'max' => 250],
             [['phone'], 'string', 'max' => 30],
+            [['comment'], 'string'],
         ];
     }
 
@@ -47,6 +49,7 @@ class Supplier extends \yii\db\ActiveRecord
             'name' => 'Название поставщика',
             'address' => 'Адрес поставщика',
             'phone' => 'Телефон поставщика',
+            'comment' => 'Комментарий',
         ];
     }
 
