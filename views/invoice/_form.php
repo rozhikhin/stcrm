@@ -57,9 +57,9 @@ use yii\widgets\ActiveForm;
         echo $form->field($model, 'payment')->dropDownList($items);
     ?>
 
-<?php //if (Yii::$app->controller->action->id != 'update'): ?>
-<?//= $form->field($model, 'imageFile')->fileInput()->label('Выберите файл : ') ?>
-<?php //endif; ?>
+<!--    --><?php //if (Yii::$app->controller->action->id != 'update'): ?>
+<!--        --><? // echo $form->field($model, 'imageFile')->fileInput()->label('Выберите файл : ') ?>
+<!--    --><?php //endif; ?>
 
     <?= $form->field($model, 'comment')->textarea(['maxlength' => false]) ?>
 
