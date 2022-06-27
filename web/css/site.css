@@ -26,8 +26,8 @@ main .container h1 {
     padding-left: 20px;
 }
 
-form .help-block {
-    color: #721c24;;
+.help-block {
+    color: #d50f22;
 }
 
 .breadcrumb {
@@ -46,7 +46,8 @@ form .help-block {
         background-color: #F9FAFC !important;
     }
     .container, .container-sm, .container-md, .container-lg, .container-xl {
-        max-width: calc(100% - 230px);
+        /*max-width: calc(100% - 230px);*/
+        max-width: 100%;
         margin: 0;
     }
     .sidenav {
@@ -86,7 +87,7 @@ form .help-block {
 
     main {
         max-width: 100%;
-        width: 100%;
+        /*width: 100%;*/
         margin-left: 230px;
     }
     .footer {

@@ -13,13 +13,16 @@ use yii\web\UploadedFile;
  * @property string $number Номер документа
  * @property int $date Дата документа - timestamp
  * @property string $invoiceDate Дата документа user-friendly
+ * @property int $date_payment Дата документа - timestamp
+ * @property string $invoicePaymentDate Дата документа user-friendly
  * @property int $organisation_id Своя организация
  * @property int $supplier_id Поставщик
  * @property float $summ Сумма платежа
  * @property int $payment Оплачено (1 или 0)
  * @property int $isPayment Оплачено (ДА или НЕТ)
- * @property string $file Ссылка на файл документа
- * @property UploadedFile $imageFile  Файл
+ * @property int $comment Комментарий
+// * @property string $file Ссылка на файл документа
+// * @property UploadedFile $imageFile  Файл
  *
  *
  * @property Organization $organisation
@@ -28,7 +31,7 @@ use yii\web\UploadedFile;
 class Invoice extends \yii\db\ActiveRecord
 {
 
-    public $imageFile;
+//    public $imageFile;
 
     /**
      * {@inheritdoc}
@@ -44,15 +47,16 @@ class Invoice extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['number', 'date', 'organisation_id', 'supplier_id', 'summ', 'payment'], 'required'],
-            [['date', 'organisation_id', 'supplier_id', 'payment'], 'default', 'value' => null],
+            [['number', 'date', 'invoiceDate', 'organisation_id', 'supplier_id', 'summ', 'payment'], 'required'],
+            [['date', 'organisation_id', 'supplier_id', 'payment', 'date_payment'], 'default', 'value' => null],
             [['organisation_id', 'supplier_id', 'payment'], 'integer'],
             [['summ'], 'number'],
             [['number', 'date'], 'string', 'max' => 100],
-            [['file'], 'string', 'max' => 255],
+            [['comment'], 'string'],
+//            [['file'], 'string', 'max' => 255],
             [['organisation_id'], 'exist', 'skipOnError' => true, 'targetClass' => Organization::className(), 'targetAttribute' => ['organisation_id' => 'id']],
             [['supplier_id'], 'exist', 'skipOnError' => true, 'targetClass' => Supplier::className(), 'targetAttribute' => ['supplier_id' => 'id']],
-            [['imageFile'], 'file'],
+//            [['imageFile'], 'file'],
         ];
     }
 
@@ -69,9 +73,12 @@ class Invoice extends \yii\db\ActiveRecord
             'organisation_id' => 'Своя организация',
             'supplier_id' => 'Поставщик',
             'summ' => 'Сумма платежа',
+            'date_payment' => 'Дата оплаты',
+            'invoicePaymentDate' => 'Дата оплаты',
             'payment' => 'Оплачено',
             'isPayment' => 'Оплачено',
-            'file' => 'Ссылка',
+            'comment' => 'Комментарий',
+//            'file' => 'Ссылка',
         ];
     }
 
@@ -112,6 +119,22 @@ class Invoice extends \yii\db\ActiveRecord
     }
 
     /**
+     * Convert 'date_payment' timestamp to user-friendly date
+     *
+     * @return String
+     *
+     * @throws InvalidConfigException
+     */
+    public function getInvoicePaymentDate ()
+    {
+        if ($this->date_payment) {
+            return Yii::$app->formatter->asDate($this->date_payment, 'dd.MM.yyyy');
+        } else {
+            return null;
+        }
+    }
+
+    /**
      * @return string
      */
     public function getIsPayment()
@@ -122,20 +145,20 @@ class Invoice extends \yii\db\ActiveRecord
         return 'Нет';
     }
 
-    /**
-     * @return bool
-     */
-    public function upload()
-    {
-        $this->imageFile = UploadedFile::getInstance($this, 'imageFile');
-        if ($this->imageFile) {
-            $this->file  = 'uploads/' . $this->number. '_' . time() .'.' . $this->imageFile->extension;
-            $this->imageFile->saveAs($this->file);
-            return true;
-        } else {
-            return false;
-        }
-    }
+//    /**
+//     * @return bool
+//     */
+//    public function upload()
+//    {
+//        $this->imageFile = UploadedFile::getInstance($this, 'imageFile');
+//        if ($this->imageFile) {
+//            $this->file  = 'uploads/' . $this->number. '_' . time() .'.' . $this->imageFile->extension;
+//            $this->imageFile->saveAs($this->file);
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
 
     /**
      * @param $insert
@@ -143,7 +166,12 @@ class Invoice extends \yii\db\ActiveRecord
      */
     public function beforeSave($insert)
     {
-        $this->date = strtotime($this->date);
+        if ($this->date) {
+            $this->date = strtotime($this->date);
+        }
+        if ($this->date_payment) {
+            $this->date_payment = strtotime($this->date_payment);
+        }
         return parent::beforeSave($insert);
     }
 }

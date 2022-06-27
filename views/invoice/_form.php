@@ -42,14 +42,26 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'summ')->textInput() ?>
 
+    <?= $form->field($model, 'date_payment')->widget(
+        DatePicker::class, [
+            'pluginOptions' => [
+                'format' => 'dd-mm-yyyy',
+                'todayHighlight' => true,
+                'autoclose'=>true,
+            ]
+        ]
+    ) ?>
+
     <?php
         $items = [0 => 'Нет', 1 => 'Да'];
         echo $form->field($model, 'payment')->dropDownList($items);
     ?>
 
-    <?php if (Yii::$app->controller->action->id != 'update'): ?>
-        <?= $form->field($model, 'imageFile')->fileInput()->label('Выберите файл : ') ?>
-    <?php endif; ?>
+<!--    --><?php //if (Yii::$app->controller->action->id != 'update'): ?>
+<!--        --><?//= $form->field($model, 'imageFile')->fileInput()->label('Выберите файл : ') ?>
+<!--    --><?php //endif; ?>
+
+    <?= $form->field($model, 'comment')->textarea(['maxlength' => false]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>

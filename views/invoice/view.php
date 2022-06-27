@@ -36,18 +36,20 @@ $this->params['breadcrumbs'][] = $this->title;
             'organisation.name',
             'supplier.name',
             'summ',
+            'invoicePaymentDate',
             'isPayment',
-            [
-                'attribute' => 'file',
-                'value' => function (Invoice $data) {
-                    if ($data->file) {
-                        return Html::a(Html::encode('Файл'), Url::to(Yii::$app->homeUrl . $data->file), ['target' => 'blank']);
-                    } else {
-                        return null;
-                    }
-                },
-                'format' => 'raw',
-            ],
+            'comment',
+//            [
+//                'attribute' => 'file',
+//                'value' => function (Invoice $data) {
+//                    if ($data->file) {
+//                        return Html::a(Html::encode('Файл'), Url::to(Yii::$app->homeUrl . $data->file), ['target' => 'blank']);
+//                    } else {
+//                        return null;
+//                    }
+//                },
+//                'format' => 'raw',
+//            ],
         ],
     ]) ?>
 

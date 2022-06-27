@@ -11,15 +11,18 @@ use app\models\Invoice;
  */
 class InvoiceSearch extends Invoice
 {
+    public $invoiceDate;
+    public $invoicePaymentDate;
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['id', 'date', 'organisation_id', 'supplier_id', 'payment'], 'integer'],
-            [['number', 'file'], 'safe'],
+            [['id', 'organisation_id', 'supplier_id', 'payment'], 'integer'],
+            [['number', 'file', 'date', 'payment_date'], 'safe'],
             [['summ'], 'number'],
+            [['invoiceDate', 'invoicePaymentDate'], 'date', 'format' => 'dd.MM.yyyy'],
         ];
     }
 
@@ -44,9 +47,23 @@ class InvoiceSearch extends Invoice
         $query = Invoice::find();
 
         // add conditions that should always apply here
+        $query->joinWith(['organisation']);
+        $query->joinWith(['supplier']);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+        ]);
+
+        $dataProvider->setSort([
+            'attributes' => [
+                'number',
+                'invoiceDate' => [
+                    'asc'     => ['date' => SORT_ASC],
+                    'desc'    => ['date' => SORT_DESC],
+//                    'label'   => 'Department',
+                    'default' => SORT_ASC
+                ],
+            ]
         ]);
 
         $this->load($params);
@@ -60,7 +77,8 @@ class InvoiceSearch extends Invoice
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'date' => $this->date,
+//            'date' => $this->date,
+//            'invoiceDate' => $this->invoiceDate,
             'organisation_id' => $this->organisation_id,
             'supplier_id' => $this->supplier_id,
             'summ' => $this->summ,
@@ -68,7 +86,7 @@ class InvoiceSearch extends Invoice
         ]);
 
         $query->andFilterWhere(['ilike', 'number', $this->number])
-            ->andFilterWhere(['ilike', 'file', $this->file]);
+            ->andFilterWhere(['=', 'date', $this->invoiceDate && strlen($this->invoiceDate) == 10 ? strtotime($this->invoiceDate) : null]);
 
         return $dataProvider;
     }
