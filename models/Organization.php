@@ -57,6 +57,6 @@ class Organization extends \yii\db\ActiveRecord
      */
     public function getInvoices()
     {
-        return $this->hasMany(Invoice::className(), ['organisation_id' => 'id']);
+        return $this->hasMany(Invoice::className(), ['organization_id' => 'id']);
     }
 }

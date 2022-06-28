@@ -13,13 +13,15 @@ class InvoiceSearch extends Invoice
 {
     public $invoiceDate;
     public $invoicePaymentDate;
+    public $isPayment;
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['id', 'organisation_id', 'supplier_id', 'payment'], 'integer'],
+            [['id', 'payment'], 'integer'],
+            [['organisation_id', 'supplier_id', 'isPayment'], 'string'],
             [['number', 'file', 'date', 'payment_date'], 'safe'],
             [['summ'], 'number'],
             [['invoiceDate', 'invoicePaymentDate'], 'date', 'format' => 'dd.MM.yyyy'],
@@ -63,6 +65,19 @@ class InvoiceSearch extends Invoice
 //                    'label'   => 'Department',
                     'default' => SORT_ASC
                 ],
+                'organisation_id',
+                'supplier_id',
+                'summ',
+                'invoicePaymentDate' => [
+                    'asc'     => ['date' => SORT_ASC],
+                    'desc'    => ['date' => SORT_DESC],
+                    'default' => SORT_ASC
+                ],
+                'isPayment' => [
+                    'asc'     => ['payment' => SORT_ASC],
+                    'desc'    => ['payment' => SORT_DESC],
+                    'default' => SORT_ASC
+                ],
             ]
         ]);
 
@@ -77,16 +92,14 @@ class InvoiceSearch extends Invoice
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-//            'date' => $this->date,
-//            'invoiceDate' => $this->invoiceDate,
-            'organisation_id' => $this->organisation_id,
-            'supplier_id' => $this->supplier_id,
             'summ' => $this->summ,
-            'payment' => $this->payment,
         ]);
 
         $query->andFilterWhere(['ilike', 'number', $this->number])
-            ->andFilterWhere(['=', 'date', $this->invoiceDate && strlen($this->invoiceDate) == 10 ? strtotime($this->invoiceDate) : null]);
+            ->andFilterWhere(['=', 'date', $this->invoiceDate && strlen($this->invoiceDate) == 10 ? strtotime($this->invoiceDate) : null])
+            ->andFilterWhere(['ilike', 'organization.name', $this->organisation_id])
+            ->andFilterWhere(['ilike', 'supplier.name', $this->supplier_id])
+            ->andFilterWhere(['=', 'date_payment', $this->invoicePaymentDate && strlen($this->invoicePaymentDate) == 10 ? strtotime($this->invoicePaymentDate) : null]);
 
         return $dataProvider;
     }

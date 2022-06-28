@@ -31,8 +31,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'number',
             'invoiceDate',
-            'organisation.name',
-            'supplier.name',
+            [
+                'attribute' => 'organisation_id',
+                'value' => 'organisation.name'
+            ],
+            [
+                'attribute' => 'supplier_id',
+                'value' => 'supplier.name'
+            ],
             'summ',
             'invoicePaymentDate',
             'isPayment',
