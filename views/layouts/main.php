@@ -82,7 +82,7 @@ AppAsset::register($this);
                         'url' => ['/nomenclature-list/index'],
                     ],
                     [
-                        'label' => 'Типы оперций',
+                        'label' => 'Типы операций',
                         'url' => ['/operation-type/index'],
                     ],
                     [
