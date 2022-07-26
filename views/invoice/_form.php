@@ -3,6 +3,7 @@
 use app\models\Organization;
 use app\models\Supplier;
 use kartik\date\DatePicker;
+use kartik\widgets\Select2;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -37,7 +38,14 @@ use yii\widgets\ActiveForm;
     <?php
         $types = Supplier::find()->all();
         $items = ArrayHelper::map($types,'id','name');
-        echo $form->field($model, 'supplier_id')->dropDownList($items);
+//        echo $form->field($model, 'supplier_id')->dropDownList($items);
+        echo $form->field($model, 'supplier_id')->widget(Select2::class, [
+            'data' => $items,
+            'options' => ['placeholder' => 'Select a supplier ...'],
+            'pluginOptions' => [
+                'allowClear' => true
+            ],
+        ]);
     ?>
 
     <?= $form->field($model, 'summ')->textInput() ?>
