@@ -40,3 +40,5 @@ web/assets/*
 config/db.php
 web/uploads/*
 migrations/m220530_104942_add_admin_to_user_table.php
+log/
+composer.lock
