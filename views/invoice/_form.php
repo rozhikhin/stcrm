@@ -41,7 +41,7 @@ use yii\widgets\ActiveForm;
 //        echo $form->field($model, 'supplier_id')->dropDownList($items);
         echo $form->field($model, 'supplier_id')->widget(Select2::class, [
             'data' => $items,
-            'options' => ['placeholder' => 'Select a supplier ...'],
+            'options' => ['placeholder' => 'Выберите поставщика ...'],
             'pluginOptions' => [
                 'allowClear' => true
             ],
