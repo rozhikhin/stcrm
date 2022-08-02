@@ -41,8 +41,8 @@ main .container h1 {
     z-index: 99999 !important;
 }
 
-.pagination {
-    margin-bottom: 30px;
+.grid-view {
+    padding-bottom: 1px;
 }
 
 .pagination .page-item.disabled{
