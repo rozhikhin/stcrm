@@ -41,6 +41,17 @@ main .container h1 {
     z-index: 99999 !important;
 }
 
+.pagination .page-item.disabled{
+    position: relative;
+    display: block;
+    padding: 0.5rem 0.75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #212529;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+}
+
 @media (min-width: 992px) {
     .body {
         background-color: #F9FAFC !important;

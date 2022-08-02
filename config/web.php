@@ -71,6 +71,20 @@ $config = [
             ],
         ],
     ],
+    'container' => [
+        'definitions' => [
+            \yii\widgets\LinkPager::class => \yii\bootstrap4\LinkPager::class,
+            'yii\widgets\LinkPager' => [
+//                'firstPageLabel' => 'First',
+//                'lastPageLabel'  => 'Last',
+                'options' => ['class' => 'pagination justify-content-center'],
+                'pageCssClass' => 'page-item',
+                'prevPageCssClass' => '',
+                'nextPageCssClass' => '',
+                'linkOptions' => ['class' => 'page-link'],
+            ]
+        ]
+    ]
 ];
 
 if (YII_ENV_DEV) {
