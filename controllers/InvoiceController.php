@@ -101,6 +101,7 @@ class InvoiceController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
         $model->date = $model->invoiceDate;
+        $model->date_payment = $model->invoicePaymentDate;
         return $this->render('update', [
             'model' => $model,
         ]);
